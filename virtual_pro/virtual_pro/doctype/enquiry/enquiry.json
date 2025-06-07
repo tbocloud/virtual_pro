@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-06-05 10:26:26.896042",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_a7rk",
+  "company",
+  "customer_company_name",
+  "nationality",
+  "care_of",
+  "remarks",
+  "column_break_qeup",
+  "posting_date",
+  "services",
+  "scope",
+  "enquiry_value",
+  "mobile_number",
+  "email_address",
+  "more_tab",
+  "naming_series",
+  "enquiry_owner",
+  "column_break_zqpw",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_a7rk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Services",
+   "options": "\nFamily Residence Visa\nBusiness Incorporation\nEmployment Visa Services\nGolden Visa Services\nTourist Visa Services\nAttestation Services",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qeup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "more_tab",
+   "fieldtype": "Tab Break",
+   "label": "More"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "EQ/.YY./.####"
+  },
+  {
+   "fieldname": "column_break_zqpw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nReplied\nLost Enquiry\nInterested\nDo Not Contact\nConverted\nCompleted"
+  },
+  {
+   "fieldname": "customer_company_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer / Company Name",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Enquiry",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Nationality",
+   "options": "Nationality",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scope",
+   "fieldtype": "Data",
+   "label": "Scope"
+  },
+  {
+   "fieldname": "care_of",
+   "fieldtype": "Data",
+   "label": "Care Of"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "enquiry_value",
+   "fieldtype": "Currency",
+   "label": "Enquiry Value"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "default": "__user",
+   "fieldname": "enquiry_owner",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Enquiry Owner",
+   "options": "User"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-07 11:37:45.428759",
+ "modified_by": "Administrator",
+ "module": "Virtual Pro",
+ "name": "Enquiry",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

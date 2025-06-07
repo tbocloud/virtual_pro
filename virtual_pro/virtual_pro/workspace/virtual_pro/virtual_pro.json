@@ -1,0 +1,86 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"-R9HiknfVA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Virtual Pro</span>\",\"col\":12}},{\"id\":\"4WYhjFAFqF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Enquiry\",\"col\":3}},{\"id\":\"Xj0wFLq0xb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Service Request\",\"col\":3}},{\"id\":\"nlekOW0Vww\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ToDo\",\"col\":3}},{\"id\":\"YyHNwxyaAf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Task\",\"col\":3}},{\"id\":\"PQrkTjaOwh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"UMIROPe2Ju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"CH_jUkf7ta\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}}]",
+ "creation": "2025-06-07 11:46:58.272112",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "organization",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Virtual Pro",
+ "links": [],
+ "modified": "2025-06-07 11:49:53.774974",
+ "modified_by": "Administrator",
+ "module": "Virtual Pro",
+ "name": "Virtual Pro",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Enquiry",
+   "link_to": "Enquiry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ToDo",
+   "link_to": "ToDo",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Service Request",
+   "link_to": "Service Request",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Task",
+   "link_to": "Task",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Order",
+   "link_to": "Sales Order",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Payment Entry",
+   "link_to": "Payment Entry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Sales Invoice",
+   "link_to": "Sales Invoice",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Virtual Pro"
+}

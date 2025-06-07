@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-07 11:36:42.831695",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_9gdz",
+  "company",
+  "customer_company_name",
+  "remarks",
+  "column_break_qumr",
+  "posting_date",
+  "services",
+  "amended_from",
+  "activity_tab",
+  "sponsor_visa_information_collection",
+  "small_text_dkef",
+  "dependents_information_collection",
+  "column_break_mmav",
+  "file",
+  "file_2",
+  "file_3"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_9gdz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qumr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Select",
+   "label": "Services",
+   "options": "\nFamily Residence Visa\nBusiness Incorporation\nEmployment Visa Services\nGolden Visa Services\nTourist Visa Services\nAttestation Services"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Service Request",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "customer_company_name",
+   "fieldtype": "Link",
+   "label": "Customer / Company Name",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "activity_tab",
+   "fieldtype": "Tab Break",
+   "label": "Activity"
+  },
+  {
+   "default": "0",
+   "fieldname": "sponsor_visa_information_collection",
+   "fieldtype": "Check",
+   "label": "Sponsor Visa Information Collection"
+  },
+  {
+   "fieldname": "small_text_dkef",
+   "fieldtype": "Small Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "column_break_mmav",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "file",
+   "fieldtype": "Attach",
+   "label": "File 1"
+  },
+  {
+   "fieldname": "file_2",
+   "fieldtype": "Attach",
+   "label": "File 2"
+  },
+  {
+   "fieldname": "file_3",
+   "fieldtype": "Attach",
+   "label": "File 3"
+  },
+  {
+   "default": "0",
+   "fieldname": "dependents_information_collection",
+   "fieldtype": "Check",
+   "label": "Dependents Information Collection"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-07 11:42:50.805271",
+ "modified_by": "Administrator",
+ "module": "Virtual Pro",
+ "name": "Service Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
