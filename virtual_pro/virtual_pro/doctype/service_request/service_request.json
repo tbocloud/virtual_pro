@@ -12,15 +12,7 @@
   "column_break_qumr",
   "posting_date",
   "services",
-  "amended_from",
-  "activity_tab",
-  "sponsor_visa_information_collection",
-  "small_text_dkef",
-  "dependents_information_collection",
-  "column_break_mmav",
-  "file",
-  "file_2",
-  "file_3"
+  "amended_from"
  ],
  "fields": [
   {
@@ -73,54 +65,13 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
-  },
-  {
-   "fieldname": "activity_tab",
-   "fieldtype": "Tab Break",
-   "label": "Activity"
-  },
-  {
-   "default": "0",
-   "fieldname": "sponsor_visa_information_collection",
-   "fieldtype": "Check",
-   "label": "Sponsor Visa Information Collection"
-  },
-  {
-   "fieldname": "small_text_dkef",
-   "fieldtype": "Small Text",
-   "label": "Details"
-  },
-  {
-   "fieldname": "column_break_mmav",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "file",
-   "fieldtype": "Attach",
-   "label": "File 1"
-  },
-  {
-   "fieldname": "file_2",
-   "fieldtype": "Attach",
-   "label": "File 2"
-  },
-  {
-   "fieldname": "file_3",
-   "fieldtype": "Attach",
-   "label": "File 3"
-  },
-  {
-   "default": "0",
-   "fieldname": "dependents_information_collection",
-   "fieldtype": "Check",
-   "label": "Dependents Information Collection"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-07 11:42:50.805271",
+ "modified": "2025-06-07 11:58:08.478046",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",
