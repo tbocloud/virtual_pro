@@ -12,7 +12,10 @@
   "column_break_qumr",
   "posting_date",
   "services",
-  "amended_from"
+  "amended_from",
+  "create_project",
+  "project_id",
+  "project_name"
  ],
  "fields": [
   {
@@ -65,13 +68,30 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "fieldname": "create_project",
+   "fieldtype": "Button",
+   "label": "Create Project"
+  },
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-07 11:58:08.478046",
+ "modified": "2025-06-08 16:18:10.089579",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",

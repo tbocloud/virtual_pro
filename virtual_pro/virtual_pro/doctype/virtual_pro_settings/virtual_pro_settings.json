@@ -5,19 +5,98 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_jmnm"
+  "family_residence_visa_section",
+  "family_residence_visa",
+  "business_incorporation_section",
+  "business_incorporation",
+  "employment_visa_services_section",
+  "employment_visa_services",
+  "golden_visa_services_section",
+  "golden_visa_services",
+  "tourist_visa_services_section",
+  "tourist_visa_services",
+  "attestation_services_section",
+  "attestation_services"
  ],
  "fields": [
   {
-   "fieldname": "section_break_jmnm",
-   "fieldtype": "Section Break"
+   "collapsible": 1,
+   "fieldname": "family_residence_visa_section",
+   "fieldtype": "Section Break",
+   "label": "Family Residence Visa"
+  },
+  {
+   "fieldname": "family_residence_visa",
+   "fieldtype": "Table",
+   "label": "Family Residence Visa",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "fieldname": "business_incorporation",
+   "fieldtype": "Table",
+   "label": "Business Incorporation",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "fieldname": "employment_visa_services",
+   "fieldtype": "Table",
+   "label": "Employment Visa Services",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "fieldname": "golden_visa_services",
+   "fieldtype": "Table",
+   "label": "Golden Visa Services",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "fieldname": "tourist_visa_services",
+   "fieldtype": "Table",
+   "label": "Tourist Visa Services",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "fieldname": "attestation_services",
+   "fieldtype": "Table",
+   "label": "Attestation Services",
+   "options": "Virtual Pro Items"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "attestation_services_section",
+   "fieldtype": "Section Break",
+   "label": "Attestation Services"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "tourist_visa_services_section",
+   "fieldtype": "Section Break",
+   "label": "Tourist Visa Services"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "golden_visa_services_section",
+   "fieldtype": "Section Break",
+   "label": "Golden Visa Services"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "employment_visa_services_section",
+   "fieldtype": "Section Break",
+   "label": "Employment Visa Services"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "business_incorporation_section",
+   "fieldtype": "Section Break",
+   "label": "Business Incorporation"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-06-07 11:55:49.839276",
+ "modified": "2025-06-08 16:15:34.745871",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Virtual Pro Settings",
