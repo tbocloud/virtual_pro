@@ -9,13 +9,16 @@
   "company",
   "customer_company_name",
   "remarks",
+  "enquiry_reference",
   "column_break_qumr",
   "posting_date",
   "services",
   "amended_from",
   "create_project",
   "project_id",
-  "project_name"
+  "project_name",
+  "more_tab",
+  "status"
  ],
  "fields": [
   {
@@ -85,13 +88,31 @@
    "fieldname": "project_name",
    "fieldtype": "Data",
    "label": "Project Name"
+  },
+  {
+   "fieldname": "enquiry_reference",
+   "fieldtype": "Link",
+   "label": "Enquiry Reference",
+   "options": "Enquiry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "more_tab",
+   "fieldtype": "Tab Break",
+   "label": "more"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "status",
+   "options": "Open\nCompleted"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-08 16:18:10.089579",
+ "modified": "2025-06-11 10:58:58.063534",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",
