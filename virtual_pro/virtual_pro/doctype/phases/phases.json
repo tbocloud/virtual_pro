@@ -1,30 +1,41 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:nationality",
- "creation": "2025-06-07 09:38:24.826207",
+ "autoname": "field:step_name",
+ "creation": "2025-06-17 14:09:27.212237",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "nationality"
+  "section_break_p3na",
+  "step_name",
+  "child_step"
  ],
  "fields": [
   {
-   "fieldname": "nationality",
+   "fieldname": "section_break_p3na",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "step_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Nationality",
-   "reqd": 1,
+   "label": "Step Name",
    "unique": 1
+  },
+  {
+   "fieldname": "child_step",
+   "fieldtype": "Table",
+   "label": "Child Step",
+   "options": "Child Steps"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-17 12:03:26.694540",
+ "modified": "2025-06-17 15:12:15.969626",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
- "name": "Nationality",
+ "name": "Phases",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -41,7 +52,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",

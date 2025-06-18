@@ -2,24 +2,10 @@ frappe.ui.form.on('Enquiry', {
     refresh: function(frm) {
         frm.clear_custom_buttons();
 
-        // Show Change Status button ONLY when document is submitted (docstatus = 1)
+        // Show "Change Status" button only if submitted
         if (frm.doc.docstatus === 1) {
             frm.add_custom_button('Change Status', () => {
                 show_status_dialog(frm);
-            });
-        }
-
-        if (frm.doc.status === 'Interested') {
-            frm.add_custom_button('Create Service Request', () => {
-                // Auto-fill Service Request with only specific Enquiry data
-                frappe.new_doc('Service Request', {
-                    // Basic reference
-                    enquiry_reference: frm.doc.name,
-                    
-                    // Customer details
-                   customer_company_name: frm.doc.customer_company_name,
-                    services: frm.doc.services
-                });
             });
         }
     }
@@ -42,12 +28,13 @@ function show_status_dialog(frm) {
         ],
         primary_action_label: 'Save',
         primary_action(values) {
-            // Check if the new status is "Lost Enquiry"
             if (values.new_status === 'Lost Enquiry') {
-                d.hide(); // Hide the current dialog
+                d.hide();
                 show_lost_enquiry_reason_dialog(frm, values.new_status);
+            } else if (values.new_status === 'Interested') {
+                d.hide();
+                update_status(frm, values.new_status, true); // pass flag to create Service Request
             } else {
-                // For other statuses, proceed normally
                 update_status(frm, values.new_status);
                 d.hide();
             }
@@ -65,29 +52,24 @@ function show_lost_enquiry_reason_dialog(frm, new_status) {
                 label: 'Reason for Lost Enquiry',
                 fieldname: 'lost_reason',
                 fieldtype: 'Small Text',
-                reqd: 1,
-                description: 'Please provide the reason why this enquiry was lost'
+                reqd: 1
             }
         ],
         primary_action_label: 'Save',
         primary_action(values) {
-            // Update the status and save the reason
             update_status_with_reason(frm, new_status, values.lost_reason);
             reason_dialog.hide();
         },
         secondary_action_label: 'Cancel',
         secondary_action() {
             reason_dialog.hide();
-            // Optionally, you can reshow the status dialog here
-            // show_status_dialog(frm);
         }
     });
 
     reason_dialog.show();
 }
 
-function update_status(frm, new_status) {
-    // For submitted documents, use server call to update
+function update_status(frm, new_status, create_service_request = false) {
     frappe.call({
         method: "frappe.client.set_value",
         args: {
@@ -98,14 +80,16 @@ function update_status(frm, new_status) {
         },
         callback: function() {
             frappe.show_alert(`✅ Status changed to: ${new_status}`);
-            // Reload doc to refresh buttons
-            frm.reload_doc();
+            if (create_service_request) {
+                auto_create_service_request(frm);
+            } else {
+                frm.reload_doc();
+            }
         }
     });
 }
 
 function update_status_with_reason(frm, new_status, reason) {
-    // Update both status and reason in the lost_reason field
     frappe.call({
         method: "frappe.client.set_value",
         args: {
@@ -113,42 +97,54 @@ function update_status_with_reason(frm, new_status, reason) {
             name: frm.doc.name,
             fieldname: {
                 "status": new_status,
-                "lost_reason": reason  // Saves to the lost_reason field in Enquiry doctype
+                "lost_reason": reason
             }
         },
         callback: function() {
             frappe.show_alert(`✅ Status changed to: ${new_status}`);
             frappe.show_alert(`📝 Reason saved: ${reason}`);
-            // Reload doc to refresh buttons
             frm.reload_doc();
         }
     });
 }
 
-// List view settings for Enquiry 
-frappe.listview_settings['Enquiry'] = {
-    add_fields: ["status"],
-    get_indicator: function(doc) {
-        // Use status field value or default to "Open" for drafts
-        const status = doc.status || "Open";
-        
-        switch(status) {
-            case "Open":
-                return ["Open", "blue", "status,=,Open"];
-            case "Replied":
-                return ["Replied", "orange", "status,=,Replied"];
-            case "Lost Enquiry":
-                return ["Lost Enquiry", "red", "status,=,Lost Enquiry"];
-            case "Interested":
-                return ["Interested", "green", "status,=,Interested"];
-            case "Do Not Contact":
-                return ["Do Not Contact", "red", "status,=,Do Not Contact"];
-            case "Converted":
-                return ["Converted", "green", "status,=,Converted"];
-            case "Completed":
-                return ["Completed", "darkgreen", "status,=,Completed"];
-            default:
-                return [status, "gray", "status,=," + status];
+function auto_create_service_request(frm) {
+    // Check if Service Request already exists for this Enquiry
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "Service Request",
+            filters: {
+                enquiry: frm.doc.name
+            },
+            fields: ["name"],
+            limit: 1
+        },
+        callback: function(res) {
+            if (res.message && res.message.length > 0) {
+                frappe.show_alert(`Service Request already exists: ${res.message[0].name}`);
+                frm.reload_doc();
+            } else {
+                frappe.call({
+                    method: "frappe.client.insert",
+                    args: {
+                        doc: {
+                            doctype: "Service Request",
+                            enquiry: frm.doc.name,
+                            customer_company_name: frm.doc.customer_company_name,
+                            services: frm.doc.services
+                        }
+                    },
+                    callback: function(r) {
+                        if (r.message) {
+                            frappe.show_alert(`Service Request ${r.message.name} created`);
+                            frm.reload_doc();
+                        } else {
+                            frappe.msgprint("Could not create Service Request.");
+                        }
+                    }
+                });
+            }
         }
-    }
-};
+    });
+}

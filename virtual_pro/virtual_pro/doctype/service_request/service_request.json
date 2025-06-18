@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:SR-{MM}-{customer_company_name}-{####}",
  "creation": "2025-06-07 11:36:42.831695",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -9,7 +10,7 @@
   "company",
   "customer_company_name",
   "remarks",
-  "enquiry_reference",
+  "enquiry",
   "column_break_qumr",
   "posting_date",
   "services",
@@ -46,9 +47,9 @@
   },
   {
    "fieldname": "services",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Services",
-   "options": "\nFamily Residence Visa\nBusiness Incorporation\nEmployment Visa Services\nGolden Visa Services\nTourist Visa Services\nAttestation Services"
+   "options": "Services"
   },
   {
    "fieldname": "amended_from",
@@ -85,15 +86,10 @@
    "read_only": 1
   },
   {
+   "fetch_from": "project_id.project_name",
    "fieldname": "project_name",
    "fieldtype": "Data",
-   "label": "Project Name"
-  },
-  {
-   "fieldname": "enquiry_reference",
-   "fieldtype": "Link",
-   "label": "Enquiry Reference",
-   "options": "Enquiry",
+   "label": "Project Name",
    "read_only": 1
   },
   {
@@ -106,16 +102,24 @@
    "fieldtype": "Select",
    "label": "status",
    "options": "Open\nCompleted"
+  },
+  {
+   "fieldname": "enquiry",
+   "fieldtype": "Link",
+   "label": "Enquiry Reference",
+   "options": "Enquiry",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-11 10:58:58.063534",
+ "modified": "2025-06-17 21:15:32.019532",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -132,6 +136,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
