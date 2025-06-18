@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:service_name",
+ "creation": "2025-06-17 08:36:53.551619",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "service_name",
+  "column_break_yade",
+  "type",
+  "phase",
+  "section_break_wbbg",
+  "parent_steps",
+  "section_break_cmie",
+  "child_steps",
+  "section_break_enrc",
+  "service_items"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Service Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_cmie",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_enrc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "service_items",
+   "fieldtype": "Table",
+   "label": "Service Items",
+   "options": "Service Items"
+  },
+  {
+   "fieldname": "section_break_wbbg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.phase == 1",
+   "fieldname": "parent_steps",
+   "fieldtype": "Table",
+   "label": "Parent Steps",
+   "options": "Parent Steps"
+  },
+  {
+   "fieldname": "child_steps",
+   "fieldtype": "Table",
+   "label": "Child Steps",
+   "options": "Child Steps"
+  },
+  {
+   "fieldname": "column_break_yade",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Dubai Mainland\nFreezone"
+  },
+  {
+   "default": "0",
+   "fieldname": "phase",
+   "fieldtype": "Check",
+   "label": "Parent Phase"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-17 15:18:34.438984",
+ "modified_by": "Administrator",
+ "module": "Virtual Pro",
+ "name": "Services",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-17 14:45:02.639749",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "step_name",
+  "assign_by_role",
+  "cc"
+ ],
+ "fields": [
+  {
+   "fieldname": "assign_by_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assign By Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "cc",
+   "fieldtype": "Code",
+   "in_list_view": 1,
+   "label": "CC"
+  },
+  {
+   "fieldname": "step_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Step Name",
+   "options": "Phases"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-17 15:31:48.350476",
+ "modified_by": "Administrator",
+ "module": "Virtual Pro",
+ "name": "Parent Steps",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

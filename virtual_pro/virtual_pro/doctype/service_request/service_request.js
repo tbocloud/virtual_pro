@@ -3,14 +3,19 @@
 
 
 frappe.ui.form.on("Service Request", {
+    refresh: function(frm) {
+        frm.toggle_display("create_project", !frm.doc.project_id);
+    },
     create_project: function(frm) {
-        // Check if the document is saved
-        if (frm.is_new()) {
-            frm.save().then(() => {
-                create_project_call(frm);
-            });
-        } else {
+        if (frm.doc.project_id) {
+            frappe.msgprint(`Project already created: ${frm.doc.project_id}`);
+            return;
+        }
+
+        if (frm.doc.services) {
             create_project_call(frm);
+        } else {
+            frappe.msgprint("Please select services before creating a project.");
         }
     }
 });
@@ -25,29 +30,12 @@ function create_project_call(frm) {
         },
         callback: function(r) {
             if (r.message) {
-                // Just update the form field and refresh - no alert
-                frm.set_value('project_name', r.message);
+                frm.set_value('project_id', r.message);
                 frm.save();
-                frm.refresh();
+                frappe.show_alert(`Project ${r.message} created`);
+            } else {
+                frappe.msgprint("Could not create project.");
             }
         }
     });
 }
-// List view settings for Service request 
-frappe.listview_settings['Service Request'] = {
-    add_fields: ["status"],
-    get_indicator: function(doc) {
-        // Use status field value or default to "Open" for drafts
-        const status = doc.status || "Open";
-        
-        switch(status) {
-            case "Open":
-                return ["Open", "blue", "status,=,Open"];
-            
-            case "Completed":
-                return ["Completed", "darkgreen", "status,=,Completed"];
-            default:
-                return [status, "gray", "status,=," + status];
-        }
-    }
-};
