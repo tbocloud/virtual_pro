@@ -10,12 +10,6 @@ frappe.ui.form.on('Parent Steps', {
     step_name: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
 
-        // If no step name, just clear child table and exit
-        if (!row.step_name) {
-            frm.clear_table('child_steps');
-            frm.refresh_field('child_steps');
-            return;
-        }
 
         frappe.call({
             method: 'frappe.client.get',
