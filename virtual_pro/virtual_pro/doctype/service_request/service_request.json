@@ -98,10 +98,12 @@
    "label": "more"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "status",
-   "options": "Open\nCompleted"
+   "options": "Open\nTo Quotation\nTo Sales Order\nTo Sales Invoice\nCompleted",
+   "read_only": 1
   },
   {
    "fieldname": "enquiry",
@@ -115,7 +117,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-17 21:15:32.019532",
+ "modified": "2025-06-18 10:45:58.739447",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",
