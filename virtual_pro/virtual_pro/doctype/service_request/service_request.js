@@ -5,7 +5,14 @@
 frappe.ui.form.on("Service Request", {
     refresh: function(frm) {
         frm.toggle_display("create_project", !frm.doc.project_id);
+
+        if (frm.doc.docstatus === 1) { 
+            frm.add_custom_button("Create Quotation", function() {
+                create_quotation_from_service_request(frm);
+            });
+        }
     },
+
     create_project: function(frm) {
         if (frm.doc.project_id) {
             frappe.msgprint(`Project already created: ${frm.doc.project_id}`);
@@ -37,5 +44,15 @@ function create_project_call(frm) {
                 frappe.msgprint("Could not create project.");
             }
         }
+    });
+}
+
+function create_quotation_from_service_request(frm) {
+    frappe.model.open_mapped_doc({
+        method: "virtual_pro.virtual_pro.doctype.service_request.service_request.mak_quotation",
+        args: {
+            source_name: frm.doc.name
+        },
+        frm: frm
     });
 }

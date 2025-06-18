@@ -137,13 +137,18 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+"Quotation": {  
+    "on_submit": "virtual_pro.events.quotation.update_service_request"
+},
+"Sales Order": {  
+    "on_submit": ["virtual_pro.events.sales_order.update_service_request",
+                  "virtual_pro.events.sales_order.create_tasks"]
+},
+"Sales Invoice": {  
+    "on_submit": "virtual_pro.events.sales_invoice.update_service_request"
+}
+}
 
 # Scheduled Tasks
 # ---------------

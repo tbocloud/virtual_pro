@@ -2,18 +2,21 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
+from frappe.model.mapper import get_mapped_doc
 
 class ServiceRequest(Document):
     def on_submit(self):
-        self.db_set("status", "Open")
-        if self.enquiry_reference:
-            try:
-                frappe.db.set_value("Enquiry", self.enquiry_reference, "status", "Converted")
-                frappe.msgprint(f"Enquiry {self.enquiry_reference} marked as Converted.")
-            except Exception as e:
-                frappe.log_error(f"Failed to update Enquiry status: {e}", "ServiceRequest on_submit")
+        self.db_set("status", "To Quotation")
+        if self.enquiry:
+                frappe.db.set_value("Enquiry", self.enquiry, "status", "Converted")
+                frappe.msgprint(f"Enquiry {self.enquiry} marked as Converted.")
 
+        if not self.project_id:
+            frappe.throw(_("Project is not set. Please create a project first."))
+    
+            
 
 @frappe.whitelist()
 def create_project_from_service_request(services, customer_company_name, service_request_name):
@@ -47,3 +50,40 @@ def generate_project_name_with_sr(base_name):
             from datetime import datetime
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             return f"{base_name} - SR{timestamp}"
+
+
+@frappe.whitelist()
+def mak_quotation(source_name, target_doc=None):
+
+    def set_missing_values(source, target):
+        
+        source_data = frappe.get_doc("Services", source.services)
+
+        for item in source_data.service_items:
+            target.append("items", {
+                'item_code': item.item_name,
+                'uom': item.uom,
+                'qty': item.qty,
+                'price_list_rate': item.default_rate,
+                'rate': item.default_rate,
+            })
+
+    doc = get_mapped_doc(
+        "Service Request",
+        source_name,
+        {
+            "Service Request": {
+                "doctype": "Quotation",
+                "field_map": {
+                    "customer_company_name": "party_name",
+                    "project_id": "project",
+                }
+            }
+        },
+        target_doc,
+        set_missing_values
+    )
+    
+   
+    doc.insert(ignore_permissions=True)
+    return doc
