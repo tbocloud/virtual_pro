@@ -35,7 +35,7 @@ jobs:
         options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
-      - name: Clone
+      - name: Clone repository
         uses: actions/checkout@v3
 
       - name: Find tests
@@ -65,10 +65,10 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: 'echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT'
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v4
-        id: yarn-cache
+      - name: Cache yarn
+        uses: actions/cache@v4
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -78,16 +78,16 @@ jobs:
       - name: Install MariaDB Client
         run: |
           sudo apt-get update
-          sudo apt-get install mariadb-client -y
+          sudo apt-get install -y mariadb-client
 
-      - name: Setup
+      - name: Setup Bench
         run: |
           pip install frappe-bench
           bench init --skip-redis-config-generation --skip-assets --python "$(which python)" ~/frappe-bench
           mariadb --host 127.0.0.1 --port 3306 -u root -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
           mariadb --host 127.0.0.1 --port 3306 -u root -proot -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci'"
 
-      - name: Install
+      - name: Install App
         working-directory: /home/runner/frappe-bench
         run: |
           bench get-app virtual_pro $GITHUB_WORKSPACE
