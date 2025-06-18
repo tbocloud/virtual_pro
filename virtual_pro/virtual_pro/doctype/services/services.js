@@ -25,10 +25,6 @@ frappe.ui.form.on('Parent Steps', {
 
                 const phase_children = r.message.child_step;
 
-            
-
-                frm.clear_table('child_steps');
-
                 phase_children.forEach(step => {
                     let child = frm.add_child('child_steps');
                     if (child) {
