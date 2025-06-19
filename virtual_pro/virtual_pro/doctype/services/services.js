@@ -38,5 +38,20 @@ frappe.ui.form.on('Parent Steps', {
                 frm.refresh_field('child_steps');
             }
         });
+    },
+    before_parent_steps_remove: function (frm, cdt, cdn) {
+        let row = locals[cdt] && locals[cdt][cdn] ? locals[cdt][cdn] : null;
+        
+        if (!row || !row.step_name) {
+            console.error("Step row not found or step_name is missing before removal.");
+            return;
+        }
+        
+        let template_to_remove = row.step_name;
+        frm.doc.child_steps = frm.doc.child_steps.filter(item => item.parent_step !== template_to_remove);
+        
+        frm.refresh_field("child_steps");
+        
+        frm.dirty();
     }
 });
