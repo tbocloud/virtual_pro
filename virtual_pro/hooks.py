@@ -139,15 +139,23 @@ app_license = "mit"
 
 doc_events = {
 "Quotation": {  
-    "on_submit": "virtual_pro.events.quotation.update_service_request"
+    "on_submit": "virtual_pro.events.quotation.update_service_request",
+    "on_cancel": "virtual_pro.events.quotation.update_service_request"
 },
 "Sales Order": {  
     "on_submit": ["virtual_pro.events.sales_order.update_service_request",
-                  "virtual_pro.events.sales_order.create_tasks"]
+                  "virtual_pro.events.sales_order.create_tasks"],
+    
+    "on_cancel": "virtual_pro.events.sales_order.update_service_request"
 },
 "Sales Invoice": {  
-    "on_submit": "virtual_pro.events.sales_invoice.update_service_request"
-}
+    "on_submit": "virtual_pro.events.sales_invoice.update_service_request",
+    "on_cancel": "virtual_pro.events.sales_invoice.update_service_request"
+},
+"ToDo": {
+        "before_save":"virtual_pro.events.todo.before_save"
+    }
+
 }
 
 # Scheduled Tasks

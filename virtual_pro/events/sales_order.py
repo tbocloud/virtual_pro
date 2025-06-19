@@ -45,7 +45,6 @@ def create_tasks(doc, method):
                 fields=["parent"]
             )
             
-            # Filter out system users and get only active users
             user_list = []
             for user_doc in users:
                 user = user_doc.parent
@@ -57,14 +56,54 @@ def create_tasks(doc, method):
             frappe.log_error(f"Active users for role {role}: {user_list}")
             return user_list
 
+        def get_user_by_email(email):
+            """Check if email exists as an active user and return the user"""
+            if not email:
+                return None
+            
+            try:
+                # Check if user exists with this email
+                if frappe.db.exists("User", email):
+                    user_data = frappe.db.get_value("User", email, ["enabled", "user_type"], as_dict=True)
+                    if user_data and user_data.enabled == 1 and user_data.user_type == "System User":
+                        frappe.log_error(f"Found active user for email: {email}")
+                        return email
+                    else:
+                        frappe.log_error(f"User {email} exists but is not active or not system user")
+                        return None
+                else:
+                    frappe.log_error(f"No user found with email: {email}")
+                    return None
+            except Exception as e:
+                frappe.log_error(f"Error checking user for email {email}: {e}")
+                return None
+
+        def get_assigned_users(step_row):
+            """Get users to assign based on email or role"""
+            users = []
+            
+            # First check if there's an email (CC field) in the step
+            if hasattr(step_row, 'cc') and step_row.cc:
+                user = get_user_by_email(step_row.cc)
+                if user:
+                    users.append(user)
+                    frappe.log_error(f"Assigned user by email: {user}")
+                else:
+                    frappe.log_error(f"Email {step_row.cc} not found as user, falling back to role assignment")
+            
+            # If no user found by email, fall back to role assignment
+            if not users and hasattr(step_row, 'assign_by_role') and step_row.assign_by_role:
+                users = get_users_by_role(step_row.assign_by_role)
+                frappe.log_error(f"Assigned users by role {step_row.assign_by_role}: {users}")
+            
+            return users
+
         def create_task_and_todos(parent_task_name=None):
             if hasattr(service, 'parent_steps') and service.parent_steps:
-                frappe.log_error(f"Processing {len(service.parent_steps)} parent steps")
                 
                 for parent in service.parent_steps:
-                    frappe.log_error(f"Processing parent step: {parent.step_name}")
                     
-                    parent_users = get_users_by_role(parent.assign_by_role) if hasattr(parent, 'assign_by_role') and parent.assign_by_role else []
+                    parent_users = get_assigned_users(parent)
                     
                     # Create parent task
                     try:
@@ -75,6 +114,7 @@ def create_tasks(doc, method):
                             "project": doc.project if hasattr(doc, 'project') and doc.project else None,
                             "description": f"Task created from Service {parent.step_name}",
                             "custom_service_request": doc.custom_service_request,
+                            "is_group": 1,
                         })
                         parent_task.insert(ignore_permissions=True)
                         frappe.log_error(f"Parent task created: {parent_task.name}")
@@ -105,7 +145,6 @@ def create_tasks(doc, method):
                     except Exception as e:
                         frappe.log_error(f"Error creating parent task {parent.step_name}: {e}")
             
-            # Handle child steps without parents
             elif hasattr(service, 'child_steps') and service.child_steps:
                 frappe.log_error(f"Processing {len(service.child_steps)} child steps without parents")
                 
@@ -114,9 +153,7 @@ def create_tasks(doc, method):
                         create_child_task(child, parent_task_name)
         
         def create_child_task(child, parent_task_name=None):
-            frappe.log_error(f"Creating child task: {child.step_name}")
-            
-            users = get_users_by_role(child.assign_by_role) if hasattr(child, 'assign_by_role') and child.assign_by_role else []
+            users = get_assigned_users(child)
             
             task_doc = {
                 "doctype": "Task",
@@ -134,7 +171,10 @@ def create_tasks(doc, method):
             
             task = frappe.get_doc(task_doc)
             task.insert(ignore_permissions=True)
+            
+            # Create ToDos for assigned users
             for user in users:
+                try:
                     todo = frappe.get_doc({
                         "doctype": "ToDo",
                         "description": task.subject,
@@ -145,8 +185,10 @@ def create_tasks(doc, method):
                         "allocated_to": user
                     })
                     todo.insert(ignore_permissions=True)
+                    frappe.log_error(f"ToDo created for user {user} on task {task.name}")
+                except Exception as e:
+                    frappe.log_error(f"Error creating ToDo for user {user} on task {task.name}: {e}")
                      
         create_task_and_todos()
         
-        frappe.msgprint(_("Tasks and ToDos created and assigned by role."))
-       
+        frappe.msgprint(_("Tasks and ToDos created and assigned by email/role."))
