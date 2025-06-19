@@ -74,6 +74,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
+   "no_copy": 1,
    "options": "Open\nReplied\nLost Enquiry\nInterested\nDo Not Contact\nConverted\nCompleted"
   },
   {
@@ -165,7 +166,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-17 10:14:06.148064",
+ "modified": "2025-06-19 07:52:59.434677",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",

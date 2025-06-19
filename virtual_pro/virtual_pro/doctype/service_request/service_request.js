@@ -6,7 +6,7 @@ frappe.ui.form.on("Service Request", {
     refresh: function(frm) {
         frm.toggle_display("create_project", !frm.doc.project_id);
 
-        if (frm.doc.docstatus === 1) { 
+        if (frm.doc.docstatus === 1 && frm.doc.status === "To Quotation") { 
             frm.add_custom_button("Create Quotation", function() {
                 create_quotation_from_service_request(frm);
             });
