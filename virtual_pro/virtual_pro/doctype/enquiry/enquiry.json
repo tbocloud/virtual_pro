@@ -10,8 +10,10 @@
   "company",
   "customer_company_name",
   "nationality",
+  "source",
   "care_of",
   "remarks",
+  "quotation",
   "column_break_qeup",
   "posting_date",
   "services",
@@ -102,8 +104,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Nationality",
-   "options": "Nationality",
-   "reqd": 1
+   "options": "Nationality"
   },
   {
    "fieldname": "scope",
@@ -160,13 +161,28 @@
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Lost Reason"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "quotation",
+   "fieldtype": "Link",
+   "label": "Quotation Reference",
+   "options": "Quotation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "\nGoogle Ads\nSEO\nMeta Ads\nReference\nVpro clients",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-19 07:52:59.434677",
+ "modified": "2025-06-21 08:02:03.388270",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",
