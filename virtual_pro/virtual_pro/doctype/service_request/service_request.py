@@ -8,11 +8,6 @@ from frappe.model.mapper import get_mapped_doc
 
 class ServiceRequest(Document):
     def on_submit(self):
-        self.db_set("status", "To Quotation")
-        if self.enquiry:
-                frappe.db.set_value("Enquiry", self.enquiry, "status", "Converted")
-                frappe.msgprint(f"Enquiry {self.enquiry} marked as Converted.")
-
         if not self.project_id:
             frappe.throw(_("Project is not set. Please create a project first."))
     
@@ -53,7 +48,7 @@ def generate_project_name_with_sr(base_name):
 
 
 @frappe.whitelist()
-def mak_quotation(source_name, target_doc=None):
+def mak_sales_invoice(source_name, target_doc=None):
 
     def set_missing_values(source, target):
         
@@ -73,10 +68,12 @@ def mak_quotation(source_name, target_doc=None):
         source_name,
         {
             "Service Request": {
-                "doctype": "Quotation",
+                "doctype": "Sales Invoice",
                 "field_map": {
-                    "customer_company_name": "party_name",
+                    "customer_company_name": "customer",
                     "project_id": "project",
+                    "posting_date": "due_date",
+                    "enquiry": "custom_enquiry",
                 }
             }
         },

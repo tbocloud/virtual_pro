@@ -11,6 +11,7 @@
   "customer_company_name",
   "remarks",
   "enquiry",
+  "quotation",
   "column_break_qumr",
   "posting_date",
   "services",
@@ -19,7 +20,8 @@
   "project_id",
   "project_name",
   "more_tab",
-  "status"
+  "status",
+  "sales_invoice"
  ],
  "fields": [
   {
@@ -99,10 +101,11 @@
   },
   {
    "allow_on_submit": 1,
+   "default": "To Sales Invoice",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "status",
-   "options": "Open\nTo Quotation\nTo Sales Order\nTo Sales Invoice\nCompleted",
+   "options": "To Sales Invoice\nCompleted",
    "read_only": 1
   },
   {
@@ -111,13 +114,27 @@
    "label": "Enquiry Reference",
    "options": "Enquiry",
    "read_only": 1
+  },
+  {
+   "fieldname": "quotation",
+   "fieldtype": "Link",
+   "label": "Quotation",
+   "options": "Quotation"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-18 10:45:58.739447",
+ "modified": "2025-06-21 08:04:24.102731",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Request",

@@ -4,7 +4,7 @@ def get_data():
 	return {
 		"fieldname": "service_request",		
 		"non_standard_fieldnames": {
-			"Quotation": "custom_service_request",
+			"Sales Invoice": "custom_enquiry",
 			"Task": "custom_service_request"
 			
         },

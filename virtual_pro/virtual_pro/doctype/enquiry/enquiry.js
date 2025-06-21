@@ -2,12 +2,19 @@ frappe.ui.form.on('Enquiry', {
     refresh: function(frm) {
         frm.clear_custom_buttons();
 
-        // Show "Change Status" button only if submitted
         if (frm.doc.docstatus === 1) {
             frm.add_custom_button('Change Status', () => {
                 show_status_dialog(frm);
             });
+
+            frm.add_custom_button("Create Quotation", function() {
+                frappe.model.open_mapped_doc({
+                    method: "virtual_pro.virtual_pro.doctype.enquiry.enquiry.make_quotation",
+                    frm: frm
+                });
+            },__('Create'));
         }
+        cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
     }
 });
 
@@ -31,9 +38,9 @@ function show_status_dialog(frm) {
             if (values.new_status === 'Lost Enquiry') {
                 d.hide();
                 show_lost_enquiry_reason_dialog(frm, values.new_status);
-            } else if (values.new_status === 'Interested') {
+            } else if (values.new_status === 'Converted') {
                 d.hide();
-                update_status(frm, values.new_status, true); // pass flag to create Service Request
+                update_status(frm, values.new_status, true); // Create Service Request when status is Converted
             } else {
                 update_status(frm, values.new_status);
                 d.hide();
@@ -137,10 +144,10 @@ function auto_create_service_request(frm) {
                     },
                     callback: function(r) {
                         if (r.message) {
-                            frappe.show_alert(`Service Request ${r.message.name} created`);
+                            frappe.show_alert(`✅ Service Request ${r.message.name} created successfully`);
                             frm.reload_doc();
                         } else {
-                            frappe.msgprint("Could not create Service Request.");
+                            frappe.msgprint("❌ Could not create Service Request.");
                         }
                     }
                 });

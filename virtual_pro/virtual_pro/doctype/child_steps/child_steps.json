@@ -34,15 +34,16 @@
   },
   {
    "fieldname": "step_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Step Name"
+   "label": "Step Name",
+   "options": "Service List"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-17 15:14:02.481320",
+ "modified": "2025-06-21 08:13:49.956331",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Child Steps",
