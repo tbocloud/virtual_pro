@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:service",
  "creation": "2025-06-21 08:12:21.096312",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,16 +12,18 @@
   {
    "fieldname": "service",
    "fieldtype": "Data",
-   "label": "Service"
+   "label": "Service",
+   "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-21 08:12:54.824379",
+ "modified": "2025-06-21 08:26:33.250651",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Service Steps",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
