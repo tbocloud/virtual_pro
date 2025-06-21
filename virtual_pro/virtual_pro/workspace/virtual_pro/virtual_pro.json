@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"-R9HiknfVA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Virtual Pro</span>\",\"col\":12}},{\"id\":\"4WYhjFAFqF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Enquiry\",\"col\":3}},{\"id\":\"Xj0wFLq0xb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Service Request\",\"col\":3}},{\"id\":\"nlekOW0Vww\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ToDo\",\"col\":3}},{\"id\":\"YyHNwxyaAf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Task\",\"col\":3}},{\"id\":\"PQrkTjaOwh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"UMIROPe2Ju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"CH_jUkf7ta\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"en_3CTXRJE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Virtual Pro Settings\",\"col\":3}},{\"id\":\"p_MEl48Nse\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Services\",\"col\":3}}]",
+ "content": "[{\"id\":\"-R9HiknfVA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Virtual Pro</span>\",\"col\":12}},{\"id\":\"4WYhjFAFqF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Enquiry\",\"col\":3}},{\"id\":\"Xj0wFLq0xb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Service Request\",\"col\":3}},{\"id\":\"nlekOW0Vww\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ToDo\",\"col\":3}},{\"id\":\"YyHNwxyaAf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Task\",\"col\":3}},{\"id\":\"PQrkTjaOwh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"UMIROPe2Ju\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"CH_jUkf7ta\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"en_3CTXRJE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Virtual Pro Settings\",\"col\":3}},{\"id\":\"p_MEl48Nse\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Services\",\"col\":3}},{\"id\":\"b2NzE7fjHI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Type\",\"col\":3}},{\"id\":\"ahNtXWwuaz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Service Steps\",\"col\":3}}]",
  "creation": "2025-06-07 11:46:58.272112",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Virtual Pro",
  "links": [],
- "modified": "2025-06-17 10:10:17.123918",
+ "modified": "2025-06-21 12:33:07.951876",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Virtual Pro",
@@ -44,8 +44,24 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Type",
+   "link_to": "Type",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "ToDo",
    "link_to": "ToDo",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Service Steps",
+   "link_to": "Service Steps",
    "stats_filter": "[]",
    "type": "DocType"
   },

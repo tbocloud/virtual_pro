@@ -6,13 +6,14 @@ frappe.ui.form.on('Enquiry', {
             frm.add_custom_button('Change Status', () => {
                 show_status_dialog(frm);
             });
-
-            frm.add_custom_button("Create Quotation", function() {
-                frappe.model.open_mapped_doc({
-                    method: "virtual_pro.virtual_pro.doctype.enquiry.enquiry.make_quotation",
-                    frm: frm
-                });
-            },__('Create'));
+            if (!frm.doc.quotation) {
+                frm.add_custom_button("Create Quotation", function() {
+                    frappe.model.open_mapped_doc({
+                        method: "virtual_pro.virtual_pro.doctype.enquiry.enquiry.make_quotation",
+                        frm: frm
+                    });
+                }, __('Create'));
+            }
         }
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
     }
