@@ -3,14 +3,19 @@ from frappe import _
 
 
 def update_service_request(doc, method):
-    sp = frappe.get_doc("Service Request", doc.custom_service_request)
-    if doc.docstatus == 1:
-        sp.db_set('status', "Completed")
-        sp.db_set('sales_invoice', doc.name)
-    elif doc.docstatus == 2:
-        sp.db_set('status', "To Sales Invoice")
-        sp.db_set('sales_invoice', " ")
-    sp.save()
+    sp_name = frappe.db.get_value("Service Request", {"enquiry": doc.custom_enquiry}, "name")
+    
+    if sp_name: 
+        sp = frappe.get_doc("Service Request", sp_name)
+        
+        if doc.docstatus == 1:
+            sp.db_set('status', "Completed")
+            sp.db_set('sales_invoice', doc.name)
+        elif doc.docstatus == 2:
+            sp.db_set('status', "To Sales Invoice")
+            sp.db_set('sales_invoice', " ") 
+        
+        sp.save()
 
 
 def create_tasks(doc, method):
