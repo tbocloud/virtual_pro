@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:type",
  "creation": "2025-06-21 09:52:42.297944",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,16 +12,17 @@
   {
    "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Type"
+   "label": "Type",
+   "unique": 1
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-21 09:53:11.402580",
+ "modified": "2025-06-21 10:05:09.197091",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -37,7 +39,6 @@
   }
  ],
  "quick_entry": 1,
- "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
