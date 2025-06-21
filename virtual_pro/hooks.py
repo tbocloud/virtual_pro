@@ -143,7 +143,7 @@ doc_events = {
     "on_cancel": "virtual_pro.events.quotation.update_service_request"
 },
 "Sales Invoice": {  
-    "on_submit": ["virtual_pro.events.sales_order.create_tasks",
+    "on_submit": ["virtual_pro.events.sales_invoice.create_tasks",
                 "virtual_pro.events.sales_invoice.update_service_request",
                   "virtual_pro.events.quotation.update_quotation_status"],
 
