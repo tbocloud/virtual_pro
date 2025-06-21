@@ -102,7 +102,7 @@ def create_tasks(doc, method):
             if hasattr(service, 'parent_steps') and service.parent_steps:
                 
                 for parent in service.parent_steps:
-                    request = frappe.get_doc("Service Request", {"enquiry":doc.custom_enquiry})
+                    request = frappe.db.get_value("Service Request", {"enquiry": doc.custom_enquiry},"name")
                     
                     parent_users = get_assigned_users(parent)
                     
@@ -114,7 +114,7 @@ def create_tasks(doc, method):
                             "status": "Open",
                             "project": doc.project if hasattr(doc, 'project') and   doc.project else None,
                             "description": f"Task created from Service {parent.step_name}",
-                            "custom_service_request": request.name,
+                            "custom_service_request": request,
                             "is_group": 1,
                         })
                         parent_task.insert(ignore_permissions=True)
@@ -155,14 +155,14 @@ def create_tasks(doc, method):
         
         def create_child_task(child, parent_task_name=None):
             users = get_assigned_users(child)
-            request = frappe.get_doc("Service Request", {"enquiry":doc.custom_enquiry})
+            request = frappe.db.get_value("Service Request", {"enquiry": doc.custom_enquiry},"name")
             
             task_doc = {
                 "doctype": "Task",
                 "subject": child.step_name,
                 "status": "Open",
                 "description": f"Task created from Service {child.step_name}",
-                "custom_service_request": request.name,
+                "custom_service_request": request,
             }
             
             if hasattr(doc, 'project') and doc.project:
