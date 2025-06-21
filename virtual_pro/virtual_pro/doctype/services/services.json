@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "service_name",
+  "company",
   "column_break_yade",
   "type",
   "phase",
@@ -72,11 +73,17 @@
    "fieldname": "phase",
    "fieldtype": "Check",
    "label": "Parent Phase"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-17 15:18:34.438984",
+ "modified": "2025-06-21 13:31:25.451063",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Services",
