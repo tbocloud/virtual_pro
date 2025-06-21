@@ -47,7 +47,7 @@
   {
    "fieldname": "company",
    "fieldtype": "Link",
-   "hidden": 1,
+   "in_list_view": 1,
    "label": "Company",
    "options": "Company"
   },
@@ -188,7 +188,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-21 13:08:54.716395",
+ "modified": "2025-06-21 13:30:28.398105",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",
