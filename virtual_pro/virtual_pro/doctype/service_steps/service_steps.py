@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ServiceList(Document):
+class ServiceSteps(Document):
 	pass

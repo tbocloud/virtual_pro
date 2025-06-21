@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestServiceList(FrappeTestCase):
+class TestServiceSteps(FrappeTestCase):
 	pass
