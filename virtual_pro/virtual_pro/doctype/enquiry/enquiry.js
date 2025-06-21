@@ -139,7 +139,9 @@ function auto_create_service_request(frm) {
                             doctype: "Service Request",
                             enquiry: frm.doc.name,
                             customer_company_name: frm.doc.customer_company_name,
-                            services: frm.doc.services
+                            services: frm.doc.services,
+                            quotation: frm.doc.quotation,
+
                         }
                     },
                     callback: function(r) {
