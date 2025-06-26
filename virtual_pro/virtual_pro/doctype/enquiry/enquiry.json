@@ -11,6 +11,7 @@
   "customer_company_name",
   "nationality",
   "enquiry_type",
+  "enquiry_potential",
   "source_name",
   "care_of",
   "remarks",
@@ -102,8 +103,6 @@
   {
    "fieldname": "nationality",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Nationality",
    "options": "Nationality"
   },
@@ -153,6 +152,8 @@
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Posting Date",
    "reqd": 1
   },
@@ -181,14 +182,24 @@
   {
    "fieldname": "enquiry_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Enquiry Type",
    "options": "Type"
+  },
+  {
+   "fieldname": "enquiry_potential",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Enquiry Potential",
+   "options": "\nNone\nPotential\nLess Potential\nH"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-21 13:30:28.398105",
+ "modified": "2025-06-26 08:21:58.136375",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",
