@@ -193,13 +193,13 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Enquiry Potential",
-   "options": "Enquiry Potential"
+   "options": "Enquiry Potential Status"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-26 09:30:27.718563",
+ "modified": "2025-06-26 09:42:40.901385",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",
