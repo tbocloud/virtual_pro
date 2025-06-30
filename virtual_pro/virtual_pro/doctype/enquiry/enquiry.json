@@ -13,6 +13,7 @@
   "enquiry_type",
   "enquiry_potential",
   "source_name",
+  "source_reference",
   "care_of",
   "remarks",
   "quotation",
@@ -194,12 +195,19 @@
    "in_standard_filter": 1,
    "label": "Enquiry Potential",
    "options": "Enquiry Potential Status"
+  },
+  {
+   "depends_on": "eval: [\"Google Ads\", \"Meta Ads\", \"Vpro clients\", \"Reference\"].includes(doc.source_name)\n",
+   "fieldname": "source_reference",
+   "fieldtype": "Link",
+   "label": "Source Reference",
+   "options": "Source Reference"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-26 09:42:40.901385",
+ "modified": "2025-06-30 14:27:24.727431",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Enquiry",
