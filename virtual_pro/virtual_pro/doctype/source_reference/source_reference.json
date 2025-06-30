@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:source_reference",
  "creation": "2025-06-30 14:21:14.360770",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,16 +12,17 @@
   {
    "fieldname": "source_reference",
    "fieldtype": "Data",
-   "label": "Source Reference"
+   "label": "Source Reference",
+   "unique": 1
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-06-30 14:21:53.986157",
+ "modified": "2025-06-30 15:22:51.961265",
  "modified_by": "Administrator",
  "module": "Virtual Pro",
  "name": "Source Reference",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -37,7 +39,6 @@
   }
  ],
  "quick_entry": 1,
- "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
