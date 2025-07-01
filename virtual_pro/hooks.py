@@ -43,7 +43,9 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Quotation" : "public/js/quotation.js",}
+doctype_js = {"Quotation" : "public/js/quotation.js",
+            "Sales Invoice": "public/js/sales_invoice.js"
+            }
 doctype_list_js = {"Task" : "public/js/task_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -145,10 +147,12 @@ doc_events = {
 "Sales Invoice": {  
     "on_submit": ["virtual_pro.events.sales_invoice.create_tasks",
                 "virtual_pro.events.sales_invoice.update_service_request",
-                  "virtual_pro.events.quotation.update_quotation_status"],
+                  "virtual_pro.events.quotation.update_quotation_status",
+                  "virtual_pro.events.sales_invoice.create_journal_entry_for_cost_difference"],
 
     "on_cancel": ["virtual_pro.events.sales_invoice.update_service_request",
-                  "virtual_pro.events.quotation.update_quotation_status"]
+                  "virtual_pro.events.quotation.update_quotation_status",
+                  "virtual_pro.events.sales_invoice.cancel_journal_entry_for_cost_difference"]
 },
 "ToDo": {
         "before_save":"virtual_pro.events.todo.before_save"

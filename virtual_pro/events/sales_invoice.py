@@ -1,21 +1,23 @@
 import frappe
 from frappe import _
+from frappe.utils import flt, nowdate
 
 
 def update_service_request(doc, method):
-    sp_name = frappe.db.get_value("Service Request", {"enquiry": doc.custom_enquiry}, "name")
-    
-    if sp_name: 
-        sp = frappe.get_doc("Service Request", sp_name)
+    if doc.custom_enquiry:
+        sp_name = frappe.db.get_value("Service Request", {"enquiry": doc.custom_enquiry}, "name")
         
-        if doc.docstatus == 1:
-            sp.db_set('status', "Completed")
-            sp.db_set('sales_invoice', doc.name)
-        elif doc.docstatus == 2:
-            sp.db_set('status', "To Sales Invoice")
-            sp.db_set('sales_invoice', " ") 
-        
-        sp.save()
+        if sp_name: 
+            sp = frappe.get_doc("Service Request", sp_name)
+            
+            if doc.docstatus == 1:
+                sp.db_set('status', "Completed")
+                sp.db_set('sales_invoice', doc.name)
+            elif doc.docstatus == 2:
+                sp.db_set('status', "To Sales Invoice")
+                sp.db_set('sales_invoice', " ") 
+            
+            sp.save()
 
 
 def create_tasks(doc, method):
@@ -198,3 +200,52 @@ def create_tasks(doc, method):
         create_task_and_todos()
         
         frappe.msgprint(_("Tasks and ToDos created and assigned by email/role."))
+
+@frappe.whitelist()
+def create_journal_entry_for_cost_difference(doc, method):
+    total_cost_difference = 0
+    company = frappe.get_doc("Company", doc.company)
+    income_account = company.default_income_account
+
+    if not income_account:
+        frappe.throw("Please set a Default Income Account in Company settings.")
+
+    journal = frappe.new_doc("Journal Entry")
+    journal.voucher_type = "Journal Entry"
+    journal.posting_date = nowdate()
+    journal.company = doc.company
+    journal.remark = f"Cost Difference Journal Entry for Sales Invoice {doc.name}"
+
+    for item in doc.items:
+        cost_diff = flt(item.custom_cost_difference)
+        if cost_diff > 0 and item.expense_account:
+            total_cost_difference += cost_diff
+
+            journal.append("accounts", {
+                "account": item.expense_account,
+                "debit_in_account_currency": cost_diff
+            })
+
+    if total_cost_difference > 0:
+        journal.append("accounts", {
+            "account": income_account,
+            "credit_in_account_currency": total_cost_difference
+        })
+
+        journal.insert()
+        journal.submit()
+
+        doc.db_set("custom_ref_journal_entry", journal.name)
+
+
+@frappe.whitelist()
+def cancel_journal_entry_for_cost_difference(doc, method):
+    if doc.custom_ref_journal_entry:
+        try:
+            je = frappe.get_doc("Journal Entry", doc.custom_ref_journal_entry)
+            if je.docstatus == 1:
+                je.cancel()
+        except frappe.DoesNotExistError:
+            frappe.msgprint(f"Journal Entry {doc.custom_ref_journal_entry} not found.")
+
+        doc.db_set("custom_ref_journal_entry", None)
