@@ -212,7 +212,7 @@ def create_journal_entry_for_cost_difference(doc, method):
 
     journal = frappe.new_doc("Journal Entry")
     journal.voucher_type = "Journal Entry"
-    journal.posting_date = nowdate()
+    journal.posting_date = doc.posting_date
     journal.company = doc.company
     journal.remark = f"Cost Difference Journal Entry for Sales Invoice {doc.name}"
 
