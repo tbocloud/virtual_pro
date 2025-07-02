@@ -236,6 +236,7 @@ def create_journal_entry_for_cost_difference(doc, method):
         journal.submit()
 
         doc.db_set("custom_ref_journal_entry", journal.name)
+        frappe.msgprint(f"Journal Entry <b>{journal.name}</b> created.", alert=True, indicator="green")
 
 
 @frappe.whitelist()
