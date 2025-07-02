@@ -155,8 +155,11 @@ doc_events = {
                   "virtual_pro.events.sales_invoice.cancel_journal_entry_for_cost_difference"]
 },
 "ToDo": {
-        "before_save":"virtual_pro.events.todo.before_save"
-    }
+    "before_save":"virtual_pro.events.todo.before_save"
+},
+"Journal Entry": {
+    "on_cancel": "virtual_pro.events.journal_entry.unlink_invoice_on_journal_cancel"
+}
 
 }
 

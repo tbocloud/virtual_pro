@@ -107,7 +107,7 @@
    "modified_by": "Administrator",
    "module": null,
    "name": "Sales Invoice-custom_ref_journal_entry",
-   "no_copy": 0,
+   "no_copy": 1,
    "non_negative": 0,
    "options": "Journal Entry",
    "owner": "Administrator",
