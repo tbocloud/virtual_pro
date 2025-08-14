@@ -16,6 +16,21 @@ frappe.ui.form.on('Enquiry', {
             }
         }
         cur_frm.page.set_inner_btn_group_as_primary(__("Create"));
+    },
+    services: function(frm) {
+        if (frm.doc.services) {
+            frappe.db.get_doc('Services', frm.doc.services)
+                .then(service_doc => {
+                    const has_item_name = service_doc.service_items?.some(row => row.item_name && row.item_name.trim() !== "");
+                    if (!has_item_name) {
+                        frappe.msgprint({
+                            title: __('Missing Service Items'),
+                            message: __('The selected Service has no items. Please add at least one Item.'),
+                            indicator: 'red'
+                        });
+                    }
+                });
+        }
     }
 });
 
